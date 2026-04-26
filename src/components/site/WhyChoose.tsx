@@ -4,7 +4,7 @@ const items = [
   {
     icon: Award,
     title: "Meer dan 20 jaar ervaring",
-    text: "Twee decennia rijles geven in Groningen — je leert van iemand die de stad door en door kent.",
+    text: "Twee decennia rijles geven in Groningen - je leert van iemand die de stad door en door kent.",
   },
   {
     icon: HeartHandshake,
@@ -19,7 +19,7 @@ const items = [
   {
     icon: MessageCircle,
     title: "Duidelijke, rustige uitleg",
-    text: "Geen gehaaste theorie. Je krijgt de tijd om alles écht te begrijpen — op jouw tempo.",
+    text: "Geen gehaaste theorie. Je krijgt de tijd om alles écht te begrijpen - op jouw tempo.",
   },
   {
     icon: Car,
@@ -29,7 +29,7 @@ const items = [
   {
     icon: MapPinned,
     title: "Praktijkgerichte routes",
-    text: "Stadscentrum, A7 & A28, rotondes en bijzondere verrichtingen — alles wat je écht tegenkomt.",
+    text: "Stadscentrum, A7 & A28, rotondes en bijzondere verrichtingen - alles wat je écht tegenkomt.",
   },
 ];
 

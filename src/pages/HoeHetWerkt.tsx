@@ -9,12 +9,12 @@ const phases = [
   {
     icon: Car,
     title: "1. De proefles",
-    text: "Een vrijblijvende rijles van 60 minuten. We maken kennis, jij ervaart hoe ik lesgeef, en samen bekijken we waar je staat. Ideaal als startpunt — je zit nergens aan vast.",
+    text: "Een vrijblijvende rijles van 60 minuten. We maken kennis, jij ervaart hoe ik lesgeef, en samen bekijken we waar je staat. Ideaal als startpunt - je zit nergens aan vast.",
   },
   {
     icon: GraduationCap,
     title: "2. Het lestraject",
-    text: "Na de proefles maken we samen een persoonlijk lesplan. Vaste instructeur, vaste tijden en duidelijke voortgang per les. We rijden in stadsverkeer, op de snelweg en oefenen alle bijzondere verrichtingen — alles op jouw tempo.",
+    text: "Na de proefles maken we samen een persoonlijk lesplan. Vaste instructeur, vaste tijden en duidelijke voortgang per les. We rijden in stadsverkeer, op de snelweg en oefenen alle bijzondere verrichtingen - alles op jouw tempo.",
   },
   {
     icon: Award,
@@ -27,7 +27,7 @@ const HoeHetWerkt = () => {
   useSEO({
     title: "Hoe het werkt | Van proefles tot rijbewijs | Ron Bakker Rijschool",
     description:
-      "Stap voor stap van proefles naar rijbewijs. Bekijk hoe het traject bij Ron Bakker Rijschool Groningen verloopt — duidelijk en zonder verrassingen.",
+      "Stap voor stap van proefles naar rijbewijs. Bekijk hoe het traject bij Ron Bakker Rijschool Groningen verloopt - duidelijk en zonder verrassingen.",
     path: "/hoe-het-werkt",
   });
 
@@ -36,7 +36,7 @@ const HoeHetWerkt = () => {
       <PageHero
         eyebrow="Hoe het werkt"
         title={<>Van proefles tot <span className="text-primary">rijbewijs</span>.</>}
-        description="Een duidelijk traject in drie fases. Geen verrassingen — wel een persoonlijke aanpak van begin tot eind."
+        description="Een duidelijk traject in drie fases. Geen verrassingen - wel een persoonlijke aanpak van begin tot eind."
       />
 
       <section className="section-pad">

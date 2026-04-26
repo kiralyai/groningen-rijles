@@ -90,7 +90,7 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                 </span>
               )}
 
-              {/* Header block — fixed height area */}
+              {/* Header block - fixed height area */}
               <div className="min-h-[112px]">
                 <h3 className={`font-display text-2xl font-extrabold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
                   {p.name.split(" ")[0]} <span className="text-primary">{p.name.split(" ")[1]}</span>
@@ -103,7 +103,7 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                 </p>
               </div>
 
-              {/* Price block — aligned across cards */}
+              {/* Price block - aligned across cards */}
               <div className="mt-6 flex items-baseline gap-2 border-t border-dashed border-current/10 pt-6">
                 <span className={`text-xs font-semibold uppercase tracking-wider ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
                   {p.priceLabel}:
@@ -113,7 +113,7 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                 </span>
               </div>
 
-              {/* Features — flex grow so footer aligns */}
+              {/* Features - flex grow so footer aligns */}
               <ul className="mt-6 space-y-3 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className={`flex items-start gap-3 text-sm ${p.highlight ? "text-primary-foreground/90" : "text-ink"}`}>
@@ -127,7 +127,7 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                 {p.footnote}
               </p>
 
-              {/* CTA buttons — bottom-aligned */}
+              {/* CTA buttons - bottom-aligned */}
               <div className="mt-6 flex flex-col gap-2">
                 <Button asChild variant={p.highlight ? "hero" : "default"} size="lg">
                   <Link to="/contact">

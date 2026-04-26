@@ -19,7 +19,7 @@ const losseOpties = [
   {
     icon: Car,
     name: "Losse rijles / Proefles",
-    description: "Per les van 60 minuten — vrijblijvend kennismaken of bijspijkeren.",
+    description: "Per les van 60 minuten - vrijblijvend kennismaken of bijspijkeren.",
     price: "€ 60,-",
   },
   {

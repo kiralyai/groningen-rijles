@@ -11,7 +11,7 @@ const steps = [
   {
     n: "02",
     title: "Lestraject",
-    text: "Vaste instructeur, persoonlijk lesplan en duidelijke voortgang per les — op jouw tempo.",
+    text: "Vaste instructeur, persoonlijk lesplan en duidelijke voortgang per les - op jouw tempo.",
   },
   {
     n: "03",

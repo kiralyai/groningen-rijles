@@ -12,7 +12,7 @@ const reviews = [
   {
     name: "Daan K.",
     city: "Haren",
-    text: "Eindelijk een rijschool waar je niet één van de honderd bent. Vaste tijden, vaste instructeur — top.",
+    text: "Eindelijk een rijschool waar je niet één van de honderd bent. Vaste tijden, vaste instructeur - top.",
     year: "2024",
   },
 ];

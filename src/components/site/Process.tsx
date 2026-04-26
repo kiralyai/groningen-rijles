@@ -17,7 +17,7 @@ const steps = [
   {
     n: "04",
     title: "Tussentijdse toets (TTT)",
-    text: "Een veilige test bij het CBR — vaak met vrijstellingen voor het echte examen.",
+    text: "Een veilige test bij het CBR - vaak met vrijstellingen voor het echte examen.",
   },
   {
     n: "05",
@@ -27,7 +27,7 @@ const steps = [
   {
     n: "06",
     title: "Rijbewijs in handen",
-    text: "Geslaagd! Tijd om zelfstandig de weg op te gaan — met vertrouwen.",
+    text: "Geslaagd! Tijd om zelfstandig de weg op te gaan - met vertrouwen.",
   },
 ];
 

@@ -25,12 +25,12 @@ const blocks = [
   },
   {
     icon: FileCheck,
-    eyebrow: "CBR — eerste stappen",
+    eyebrow: "CBR, eerste stappen",
     title: "Wat regel je vooraf bij het CBR",
     points: [
       "Machtig de rijschool zodat wij examens kunnen reserveren.",
-      "Vul de Eigen Verklaring (medische verklaring) in op mijncbr.nl.",
-      "Plan zelf je theorie-examen via mijn CBR.",
+      "Vul de medische verklaring (Gezondheidsverklaring) in op mijncbr.nl.",
+      "Plan zelf je theorie-examen via Mijn CBR.",
       "Wij plannen samen jouw praktijkexamen op het juiste moment.",
     ],
   },
@@ -46,7 +46,7 @@ export const ImportantInfo = () => {
             Wat je moet weten <span className="text-gradient-primary">vóór je start</span>.
           </h2>
           <p className="mt-4 text-ink-soft">
-            Naast de rijlessen zelf zijn er een aantal zaken die je vooraf goed moet regelen — van leeftijdsregels tot theorie en CBR-formaliteiten.
+            Naast de rijlessen zelf zijn er een aantal zaken die je vooraf goed moet regelen - van leeftijdsregels tot theorie en CBR-formaliteiten.
           </p>
         </div>
 

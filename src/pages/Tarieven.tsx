@@ -19,7 +19,7 @@ const Tarieven = () => {
       <PageHero
         eyebrow="Rijlessen en Tarieven"
         title={<>Tarieven en <span className="text-primary italic">rijlespakketten</span></>}
-        description="Bij Ron Bakker Rijschool in Groningen weet je altijd precies waar je aan toe bent. Geen verrassingen, geen kleine lettertjes — gewoon duidelijke tarieven en complete pakketten waarmee je goed voorbereid naar je praktijkexamen gaat."
+        description="Bij Ron Bakker Rijschool in Groningen weet je altijd precies waar je aan toe bent. Geen verrassingen, geen kleine lettertjes - gewoon duidelijke tarieven en complete pakketten waarmee je goed voorbereid naar je praktijkexamen gaat."
       />
 
       <section className="section-pad bg-surface">
