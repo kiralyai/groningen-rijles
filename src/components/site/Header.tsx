@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { label: "Waarom wij", to: "/waarom-wij" },
-  { label: "Rijlessen en Tarieven", to: "/rijlessen-en-tarieven" },
+  { label: "Tarieven", to: "/rijlessen-en-tarieven" },
   { label: "Hoe het werkt", to: "/hoe-het-werkt" },
-  { label: "Veelgestelde vragen", to: "/veelgestelde-vragen" },
+  { label: "FAQ", to: "/veelgestelde-vragen" },
   { label: "Reviews", to: "/reviews" },
 ];
 
