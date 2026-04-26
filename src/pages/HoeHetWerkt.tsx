@@ -54,6 +54,7 @@ const HoeHetWerkt = () => {
       </section>
 
       <Process />
+      <ImportantInfo />
       <CTASection title="Klaar voor stap 1: je proefles?" />
     </>
   );
