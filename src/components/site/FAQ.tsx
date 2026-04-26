@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/contact";
@@ -53,7 +54,7 @@ export const FAQ = ({ compact = false }: FAQProps) => {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="hero">
-                <a href="/contact">Stel je vraag</a>
+                <Link to="/contact">Stel je vraag</Link>
               </Button>
               <Button asChild variant="whatsapp">
                 <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
