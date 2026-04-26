@@ -27,7 +27,12 @@ const reviews = [
   },
 ];
 
-export const Reviews = () => {
+interface ReviewsProps {
+  limit?: number;
+}
+
+export const Reviews = ({ limit }: ReviewsProps = {}) => {
+  const list = limit ? reviews.slice(0, limit) : reviews;
   return (
     <section id="reviews" className="section-pad bg-ink text-primary-foreground relative overflow-hidden">
       <div aria-hidden className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
@@ -55,7 +60,7 @@ export const Reviews = () => {
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {reviews.map((r) => (
+          {list.map((r) => (
             <figure
               key={r.name}
               className="relative rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition-transform hover:-translate-y-1"

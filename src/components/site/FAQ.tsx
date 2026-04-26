@@ -33,7 +33,12 @@ const faqs = [
   },
 ];
 
-export const FAQ = () => {
+interface FAQProps {
+  compact?: boolean;
+}
+
+export const FAQ = ({ compact = false }: FAQProps) => {
+  const list = compact ? faqs.slice(0, 4) : faqs;
   return (
     <section id="faq" className="section-pad">
       <div className="container-tight">
@@ -48,7 +53,7 @@ export const FAQ = () => {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="hero">
-                <a href="#contact">Stel je vraag</a>
+                <a href="/contact">Stel je vraag</a>
               </Button>
               <Button asChild variant="whatsapp">
                 <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
@@ -60,7 +65,7 @@ export const FAQ = () => {
 
           <div className="lg:col-span-7">
             <Accordion type="single" collapsible className="space-y-3">
-              {faqs.map((f, i) => (
+              {list.map((f, i) => (
                 <AccordionItem
                   key={f.q}
                   value={`item-${i}`}
