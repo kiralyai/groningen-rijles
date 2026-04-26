@@ -2,7 +2,7 @@ import { ArrowRight, Star, MapPin, ShieldCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/contact";
-import heroImage from "@/assets/hero-instructor.jpg";
+import heroImage from "@/assets/hero-car.jpg";
 
 export const Hero = () => {
   return (
