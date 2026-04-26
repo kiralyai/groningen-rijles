@@ -10,8 +10,8 @@ export const CONTACT = {
   postal: "9721 RT Groningen",
   address: "Aagje Dekenstraat 20, 9721 RT Groningen",
   hours: {
-    weekdays: "Ma t/m vr · 08:00 – 18:00",
-    saturday: "Za · 09:00 – 14:00",
+    weekdays: "Ma t/m vr · 08:00 - 18:00",
+    saturday: "Za · 09:00 - 14:00",
   },
   kvk: "02083421",
   btw: "NL002192645B45",
