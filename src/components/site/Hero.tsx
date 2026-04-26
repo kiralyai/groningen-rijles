@@ -79,9 +79,9 @@ export const Hero = () => {
               <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[var(--shadow-card)]">
                 <img
                   src={heroImage}
-                  alt="Ron Bakker, ervaren rij-instructeur in Groningen, naast zijn lesauto"
+                  alt="Lesauto Volkswagen T-Cross van Ron Bakker Rijschool in Groningen"
                   width={1024}
-                  height={1024}
+                  height={1280}
                   className="h-full w-full object-cover aspect-[4/5]"
                 />
                 {/* Gradient overlay */}
