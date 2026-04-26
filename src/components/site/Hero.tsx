@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-car.jpg";
 
 export const Hero = () => {
   return (
-    <section id="top" className="relative overflow-hidden pt-28 md:pt-32" style={{ background: "var(--gradient-hero)" }}>
+    <section id="top" className="relative overflow-hidden pt-24 md:pt-28" style={{ background: "var(--gradient-hero)" }}>
       {/* Decorative grid */}
       <div aria-hidden className="absolute inset-0 grid-bg pointer-events-none" />
 
