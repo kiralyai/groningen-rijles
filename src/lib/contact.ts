@@ -6,12 +6,16 @@ export const CONTACT = {
   phoneTel: "+31612345678",
   whatsappNumber: "31612345678", // international, no plus, for wa.me link
   email: "info@ronbakkerrijschool.nl",
-  address: "Groningen, Nederland",
+  street: "Aagje Dekenstraat 20",
+  postal: "9721 RT Groningen",
+  address: "Aagje Dekenstraat 20, 9721 RT Groningen",
   hours: {
     weekdays: "Ma t/m vr · 08:00 – 18:00",
     saturday: "Za · 09:00 – 14:00",
   },
   kvk: "02083421",
+  btw: "NL002192645B45",
+  iban: "NL90 SNSB 0896 4591 52",
   rijschoolnummer: "2347H8",
 } as const;
 

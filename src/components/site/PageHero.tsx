@@ -8,7 +8,7 @@ interface PageHeroProps {
 }
 
 export const PageHero = ({ eyebrow, title, description, children }: PageHeroProps) => (
-  <section className="relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16" style={{ background: "var(--gradient-hero)" }}>
+  <section className="relative overflow-hidden pt-24 pb-12 md:pt-32 md:pb-16" style={{ background: "var(--gradient-hero)" }}>
     <div aria-hidden className="absolute inset-0 grid-bg pointer-events-none" />
     <div className="container-tight relative">
       <div className="max-w-3xl animate-fade-up">

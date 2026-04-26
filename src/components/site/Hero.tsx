@@ -2,11 +2,11 @@ import { ArrowRight, Star, MapPin, ShieldCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/contact";
-import heroImage from "@/assets/hero-instructor.jpg";
+import heroImage from "@/assets/hero-car.jpg";
 
 export const Hero = () => {
   return (
-    <section id="top" className="relative overflow-hidden pt-28 md:pt-32" style={{ background: "var(--gradient-hero)" }}>
+    <section id="top" className="relative overflow-hidden pt-24 md:pt-28" style={{ background: "var(--gradient-hero)" }}>
       {/* Decorative grid */}
       <div aria-hidden className="absolute inset-0 grid-bg pointer-events-none" />
 
@@ -79,9 +79,9 @@ export const Hero = () => {
               <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[var(--shadow-card)]">
                 <img
                   src={heroImage}
-                  alt="Ron Bakker, ervaren rij-instructeur in Groningen, naast zijn lesauto"
+                  alt="Lesauto Volkswagen T-Cross van Ron Bakker Rijschool in Groningen"
                   width={1024}
-                  height={1024}
+                  height={1280}
                   className="h-full w-full object-cover aspect-[4/5]"
                 />
                 {/* Gradient overlay */}

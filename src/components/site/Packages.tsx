@@ -74,11 +74,11 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
           </div>
         )}
 
-        <div className={`${showHeading ? "mt-12" : ""} grid gap-6 lg:grid-cols-3`}>
+        <div className={`${showHeading ? "mt-12" : ""} grid gap-6 lg:grid-cols-3 items-stretch`}>
           {completePackages.map((p) => (
             <article
               key={p.name}
-              className={`relative flex flex-col rounded-3xl border p-7 transition-all duration-300 ${
+              className={`relative flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 ${
                 p.highlight
                   ? "border-primary bg-ink text-primary-foreground shadow-[var(--shadow-glow)] lg:scale-[1.02]"
                   : "border-border bg-card hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
@@ -89,17 +89,32 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                   <Sparkles className="h-3 w-3" /> {p.badge}
                 </span>
               )}
-              <h3 className={`font-display text-2xl font-extrabold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
-                {p.name.split(" ")[0]} <span className="text-primary">{p.name.split(" ")[1]}</span>
-              </h3>
-              <p className={`mt-2 font-display text-base font-bold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
-                {p.subtitle}
-              </p>
-              <p className={`mt-1 text-sm ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
-                {p.description}
-              </p>
 
-              <ul className="mt-6 space-y-3">
+              {/* Header block — fixed height area */}
+              <div className="min-h-[112px]">
+                <h3 className={`font-display text-2xl font-extrabold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
+                  {p.name.split(" ")[0]} <span className="text-primary">{p.name.split(" ")[1]}</span>
+                </h3>
+                <p className={`mt-2 font-display text-base font-bold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
+                  {p.subtitle}
+                </p>
+                <p className={`mt-1 text-sm ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
+                  {p.description}
+                </p>
+              </div>
+
+              {/* Price block — aligned across cards */}
+              <div className="mt-6 flex items-baseline gap-2 border-t border-dashed border-current/10 pt-6">
+                <span className={`text-xs font-semibold uppercase tracking-wider ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
+                  {p.priceLabel}:
+                </span>
+                <span className="font-display text-3xl font-extrabold text-primary">
+                  {p.price}
+                </span>
+              </div>
+
+              {/* Features — flex grow so footer aligns */}
+              <ul className="mt-6 space-y-3 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className={`flex items-start gap-3 text-sm ${p.highlight ? "text-primary-foreground/90" : "text-ink"}`}>
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -112,15 +127,7 @@ export const Packages = ({ showHeading = true }: PackagesProps) => {
                 {p.footnote}
               </p>
 
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className={`text-xs font-semibold uppercase tracking-wider ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
-                  {p.priceLabel}:
-                </span>
-                <span className={`font-display text-3xl font-extrabold ${p.highlight ? "text-primary" : "text-primary"}`}>
-                  {p.price}
-                </span>
-              </div>
-
+              {/* CTA buttons — bottom-aligned */}
               <div className="mt-6 flex flex-col gap-2">
                 <Button asChild variant={p.highlight ? "hero" : "default"} size="lg">
                   <Link to="/contact">

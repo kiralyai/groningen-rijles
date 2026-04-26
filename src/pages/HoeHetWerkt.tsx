@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/site/PageHero";
 import { Process } from "@/components/site/Process";
+import { ImportantInfo } from "@/components/site/ImportantInfo";
 import { CTASection } from "@/components/site/CTASection";
 import { useSEO } from "@/lib/seo";
 import { Car, GraduationCap, Award } from "lucide-react";
@@ -53,6 +54,7 @@ const HoeHetWerkt = () => {
       </section>
 
       <Process />
+      <ImportantInfo />
       <CTASection title="Klaar voor stap 1: je proefles?" />
     </>
   );

@@ -26,11 +26,11 @@ export const PackagesPreview = () => (
         </Button>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
+      <div className="mt-12 grid gap-6 lg:grid-cols-3 items-stretch">
         {previewPackages.map((p) => (
           <article
             key={p.name}
-            className={`relative flex flex-col rounded-3xl border p-7 transition-all duration-300 ${
+            className={`relative flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 ${
               p.highlight
                 ? "border-primary bg-ink text-primary-foreground shadow-[var(--shadow-glow)]"
                 : "border-border bg-card hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
@@ -41,7 +41,7 @@ export const PackagesPreview = () => (
             </h3>
             <p className={`mt-1 text-sm ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>{p.subtitle}</p>
             <p className="mt-4 font-display text-3xl font-extrabold text-primary">{p.price}</p>
-            <ul className="mt-5 space-y-2">
+            <ul className="mt-5 space-y-2 flex-1">
               {p.features.map((f) => (
                 <li key={f} className={`flex items-start gap-2 text-sm ${p.highlight ? "text-primary-foreground/90" : "text-ink"}`}>
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {f}
