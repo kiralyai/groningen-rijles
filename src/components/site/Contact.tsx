@@ -175,6 +175,19 @@ export const Contact = () => {
                 value={`${CONTACT.hours.weekdays} · ${CONTACT.hours.saturday}`}
               />
             </ul>
+
+            {/* Google Maps embed */}
+            <div className="mt-8 overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-soft)]">
+              <iframe
+                title="Locatie Ron Bakker Rijschool - Aagje Dekenstraat 20, Groningen"
+                src="https://www.google.com/maps?q=Aagje+Dekenstraat+20,+9721+RT+Groningen&output=embed"
+                width="100%"
+                height="280"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{ border: 0, display: "block" }}
+              />
+            </div>
           </div>
         </div>
       </div>

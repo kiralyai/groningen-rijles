@@ -25,12 +25,12 @@ const blocks = [
   },
   {
     icon: FileCheck,
-    eyebrow: "CBR - eerste stappen",
+    eyebrow: "CBR, eerste stappen",
     title: "Wat regel je vooraf bij het CBR",
     points: [
       "Machtig de rijschool zodat wij examens kunnen reserveren.",
-      "Vul de Eigen Verklaring (medische verklaring) in op mijncbr.nl.",
-      "Plan zelf je theorie-examen via mijn CBR.",
+      "Vul de medische verklaring (Gezondheidsverklaring) in op mijncbr.nl.",
+      "Plan zelf je theorie-examen via Mijn CBR.",
       "Wij plannen samen jouw praktijkexamen op het juiste moment.",
     ],
   },
