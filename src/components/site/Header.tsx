@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { CONTACT } from "@/lib/contact";
+import { cn } from "@/lib/utils";
 
 const NAV = [
-  { label: "Waarom wij", href: "#waarom" },
-  { label: "Pakketten", href: "#pakketten" },
-  { label: "Hoe het werkt", href: "#proces" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Waarom wij", to: "/waarom-wij" },
+  { label: "Rijlessen en Tarieven", to: "/rijlessen-en-tarieven" },
+  { label: "Hoe het werkt", to: "/hoe-het-werkt" },
+  { label: "Veelgestelde vragen", to: "/veelgestelde-vragen" },
+  { label: "Reviews", to: "/reviews" },
 ];
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,24 +26,36 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/85 backdrop-blur-lg shadow-[0_1px_0_hsl(var(--border))]" : "bg-transparent"
-      }`}
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled || location.pathname !== "/"
+          ? "bg-background/85 backdrop-blur-lg shadow-[0_1px_0_hsl(var(--border))]"
+          : "bg-transparent"
+      )}
     >
       <div className="container-tight flex h-16 items-center justify-between md:h-20">
         <Logo />
 
         <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center gap-1">
           {NAV.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-muted hover:text-ink"
+            <NavLink
+              key={n.to}
+              to={n.to}
+              className={({ isActive }) =>
+                cn(
+                  "rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-ink",
+                  isActive ? "text-ink bg-muted" : "text-ink-soft"
+                )
+              }
             >
               {n.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
@@ -53,7 +67,7 @@ export const Header = () => {
             <Phone className="h-4 w-4" /> {CONTACT.phoneDisplay}
           </a>
           <Button asChild size="sm" variant="hero">
-            <a href="#contact">Plan een proefles</a>
+            <Link to="/contact">Plan een proefles</Link>
           </Button>
         </div>
 
@@ -71,17 +85,21 @@ export const Header = () => {
         <div className="lg:hidden border-t border-border bg-background">
           <div className="container-tight flex flex-col py-4">
             {NAV.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className="py-3 text-base font-medium text-ink"
+              <NavLink
+                key={n.to}
+                to={n.to}
+                className={({ isActive }) =>
+                  cn(
+                    "py-3 text-base font-medium",
+                    isActive ? "text-primary" : "text-ink"
+                  )
+                }
               >
                 {n.label}
-              </a>
+              </NavLink>
             ))}
             <Button asChild className="mt-3" variant="hero">
-              <a href="#contact" onClick={() => setOpen(false)}>Plan een proefles</a>
+              <Link to="/contact">Plan een proefles</Link>
             </Button>
           </div>
         </div>
