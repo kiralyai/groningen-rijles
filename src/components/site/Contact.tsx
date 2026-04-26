@@ -50,13 +50,13 @@ export const Contact = () => {
     }
     setErrors({});
     setLoading(true);
-    // Simulate submission — connect to email/CRM/Sheets here
+    // Simulate submission - connect to email/CRM/Sheets here
     await new Promise((r) => setTimeout(r, 700));
     setLoading(false);
     setSubmitted(true);
     toast({
       title: "Bedankt voor je aanvraag!",
-      description: "Ik neem zo snel mogelijk contact met je op — meestal binnen 1 uur.",
+      description: "Ik neem zo snel mogelijk contact met je op - meestal binnen 1 uur.",
     });
   };
 
@@ -161,7 +161,7 @@ export const Contact = () => {
               Liever direct contact?
             </h3>
             <p className="mt-3 text-ink-soft">
-              Bel, mail of stuur een berichtje via WhatsApp — je krijgt altijd persoonlijk antwoord.
+              Bel, mail of stuur een berichtje via WhatsApp - je krijgt altijd persoonlijk antwoord.
             </p>
 
             <ul className="mt-8 space-y-5">

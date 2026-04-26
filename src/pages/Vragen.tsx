@@ -19,7 +19,7 @@ const Vragen = () => {
         description="Hieronder vind je de meest gestelde vragen over rijlessen, pakketten en het traject. Staat jouw vraag er niet tussen? Neem gerust contact op."
       />
       <FAQ />
-      <CTASection title="Nog een vraag over rijlessen?" description="Stuur een berichtje en je krijgt persoonlijk antwoord — meestal binnen 1 uur." />
+      <CTASection title="Nog een vraag over rijlessen?" description="Stuur een berichtje en je krijgt persoonlijk antwoord - meestal binnen 1 uur." />
     </>
   );
 };

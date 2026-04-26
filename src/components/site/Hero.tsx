@@ -12,7 +12,7 @@ export const Hero = () => {
 
       <div className="container-tight relative">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* LEFT — copy */}
+          {/* LEFT - copy */}
           <div className="lg:col-span-7 animate-fade-up">
             <div className="badge-pill">
               <span className="relative flex h-2 w-2">
@@ -35,7 +35,7 @@ export const Hero = () => {
             </h1>
 
             <p className="mt-6 max-w-xl text-base sm:text-lg text-ink-soft leading-relaxed">
-              Bij Ron Bakker Rijschool leer je rijden van één vaste, ervaren instructeur — meer dan 20 jaar
+              Bij Ron Bakker Rijschool leer je rijden van één vaste, ervaren instructeur - meer dan 20 jaar
               praktijkervaring, persoonlijke begeleiding en een rustige, duidelijke uitleg.
             </p>
 
@@ -69,7 +69,7 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT — image card stack */}
+          {/* RIGHT - image card stack */}
           <div className="lg:col-span-5 relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="relative">
               {/* Background blob */}
@@ -98,11 +98,11 @@ export const Hero = () => {
                   <p className="mt-2 text-sm text-ink leading-snug">
                     “Rustige uitleg, geduldig en duidelijk. In één keer geslaagd!”
                   </p>
-                  <p className="mt-1 text-xs text-ink-soft">— Lisa, geslaagd in 2025</p>
+                  <p className="mt-1 text-xs text-ink-soft">- Lisa, geslaagd in 2025</p>
                 </div>
               </div>
 
-              {/* Floating chip — top left */}
+              {/* Floating chip - top left */}
               <div className="hidden sm:flex absolute -left-4 top-8 items-center gap-2 rounded-2xl border border-border bg-background px-3 py-2 shadow-[var(--shadow-card)] animate-float">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
                   <ShieldCheck className="h-5 w-5 text-primary" />
@@ -113,7 +113,7 @@ export const Hero = () => {
                 </div>
               </div>
 
-              {/* Floating chip — top right */}
+              {/* Floating chip - top right */}
               <div
                 className="hidden sm:flex absolute -right-3 top-1/3 items-center gap-2 rounded-2xl border border-border bg-background px-3 py-2 shadow-[var(--shadow-card)] animate-float"
                 style={{ animationDelay: "1.5s" }}

@@ -15,7 +15,7 @@ const Contactpagina = () => {
       <PageHero
         eyebrow="Contact"
         title={<>Plan je <span className="text-primary">proefles</span>.</>}
-        description="Vul het formulier in of stuur een berichtje via WhatsApp. Ik neem zo snel mogelijk contact met je op — meestal binnen 1 uur."
+        description="Vul het formulier in of stuur een berichtje via WhatsApp. Ik neem zo snel mogelijk contact met je op - meestal binnen 1 uur."
       />
       <Contact />
     </>

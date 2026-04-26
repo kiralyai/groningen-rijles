@@ -9,7 +9,7 @@ import { useSEO } from "@/lib/seo";
 
 const Index = () => {
   useSEO({
-    title: "Rijschool Groningen | Ron Bakker — Rijles & rijbewijs halen",
+    title: "Rijschool Groningen | Ron Bakker - Rijles & rijbewijs halen",
     description:
       "Rijschool in Groningen met persoonlijke begeleiding, vaste instructeur en 20+ jaar ervaring. Plan vandaag nog je proefles bij Ron Bakker Rijschool.",
     keywords:
@@ -31,7 +31,7 @@ const Index = () => {
       "@type": "DrivingSchool",
       name: "Ron Bakker Rijschool",
       description:
-        "Persoonlijke rijschool in Groningen. Rijles van één vaste, ervaren instructeur — al meer dan 20 jaar.",
+        "Persoonlijke rijschool in Groningen. Rijles van één vaste, ervaren instructeur - al meer dan 20 jaar.",
       areaServed: "Groningen, Nederland",
       address: { "@type": "PostalAddress", addressLocality: "Groningen", addressCountry: "NL" },
       telephone: "+31612345678",

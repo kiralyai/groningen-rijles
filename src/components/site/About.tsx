@@ -10,7 +10,7 @@ export const About = () => {
             <div className="relative overflow-hidden rounded-[2rem] border border-border shadow-[var(--shadow-card)]">
               <img
                 src={groningen}
-                alt="Stad Groningen — het lesgebied van Ron Bakker Rijschool"
+                alt="Stad Groningen - het lesgebied van Ron Bakker Rijschool"
                 width={1280}
                 height={800}
                 loading="lazy"
@@ -34,7 +34,7 @@ export const About = () => {
               maar één vaste instructeur die jouw naam, jouw tempo én jouw twijfels kent.
             </p>
             <p className="mt-4 text-ink-soft leading-relaxed">
-              Met meer dan 20 jaar ervaring help ik leerlingen — van complete beginners tot mensen met faalangst —
+              Met meer dan 20 jaar ervaring help ik leerlingen - van complete beginners tot mensen met faalangst -
               op een rustige, eerlijke manier hun rijbewijs te halen. Geen druk, wel duidelijkheid. Geen lopende band,
               wel échte aandacht.
             </p>

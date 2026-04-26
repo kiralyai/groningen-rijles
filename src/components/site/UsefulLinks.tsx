@@ -3,13 +3,13 @@ import { ExternalLink, Globe, BookOpen, Car, ShieldCheck, Award } from "lucide-r
 const links = [
   {
     icon: ShieldCheck,
-    label: "CBR — Mijn CBR",
+    label: "CBR - Mijn CBR",
     description: "Inloggen, theorie-examen plannen, rijschool machtigen en medische verklaring invullen.",
     href: "https://www.cbr.nl/",
   },
   {
     icon: Car,
-    label: "2toDrive — begeleiderspas",
+    label: "2toDrive - begeleiderspas",
     description: "Aanvragen van een begeleiderspas voor leerlingen tussen 17 en 18 jaar.",
     href: "https://www.2todrive.nl/",
   },
@@ -22,7 +22,7 @@ const links = [
   {
     icon: BookOpen,
     label: "Verkeersborden (RVV 1990)",
-    description: "Bijlage 1 van het Reglement verkeersregels en verkeerstekens — alle borden op een rij.",
+    description: "Bijlage 1 van het Reglement verkeersregels en verkeerstekens - alle borden op een rij.",
     href: "https://wetten.overheid.nl/BWBR0004825/2024-01-01#Bijlage1",
   },
   {

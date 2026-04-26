@@ -16,7 +16,7 @@ const ReviewsPage = () => {
       <PageHero
         eyebrow="Reviews"
         title={<>Wat leerlingen <span className="text-primary">zeggen</span>.</>}
-        description="Eerlijke ervaringen van leerlingen uit Groningen en omstreken. 5,0 sterren gemiddeld — daar zijn we trots op."
+        description="Eerlijke ervaringen van leerlingen uit Groningen en omstreken. 5,0 sterren gemiddeld - daar zijn we trots op."
       />
       <Reviews />
       <CTASection title="Word jij de volgende geslaagde leerling?" />

@@ -6,7 +6,7 @@ interface LogoProps {
 }
 
 export const Logo = ({ className = "", showText = true }: LogoProps) => (
-  <Link to="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label="Ron Bakker Rijschool — Home">
+  <Link to="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label="Ron Bakker Rijschool - Home">
     <span className="relative flex h-9 w-9 items-center justify-center">
       <span className="absolute inset-0 rounded-full border-[2.5px] border-primary" />
       <span className="font-display text-[13px] font-extrabold leading-none text-ink">
