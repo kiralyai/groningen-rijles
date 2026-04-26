@@ -1,4 +1,5 @@
 import { ArrowRight, Star, MapPin, ShieldCheck, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/contact";
 import heroImage from "@/assets/hero-instructor.jpg";
@@ -41,12 +42,12 @@ export const Hero = () => {
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="xl" variant="hero">
-                <a href="#contact">
-                  Plan een gratis proefles <ArrowRight className="h-5 w-5" />
-                </a>
+                <Link to="/contact">
+                  Plan een proefles <ArrowRight className="h-5 w-5" />
+                </Link>
               </Button>
               <Button asChild size="xl" variant="outline">
-                <a href="#pakketten">Bekijk pakketten</a>
+                <Link to="/rijlessen-en-tarieven">Bekijk pakketten</Link>
               </Button>
             </div>
 

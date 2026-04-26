@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 import { CONTACT, whatsappLink } from "@/lib/contact";
 import { MessageCircle, Mail, Phone } from "lucide-react";
@@ -42,12 +43,12 @@ export const Footer = () => {
           <div className="md:col-span-3">
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-ink">Navigatie</h4>
             <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-              <li><a className="hover:text-primary" href="#waarom">Waarom wij</a></li>
-              <li><a className="hover:text-primary" href="#pakketten">Pakketten & tarieven</a></li>
-              <li><a className="hover:text-primary" href="#proces">Hoe het werkt</a></li>
-              <li><a className="hover:text-primary" href="#reviews">Reviews</a></li>
-              <li><a className="hover:text-primary" href="#faq">Veelgestelde vragen</a></li>
-              <li><a className="hover:text-primary" href="#contact">Contact</a></li>
+              <li><Link className="hover:text-primary" to="/waarom-wij">Waarom wij</Link></li>
+              <li><Link className="hover:text-primary" to="/rijlessen-en-tarieven">Rijlessen en Tarieven</Link></li>
+              <li><Link className="hover:text-primary" to="/hoe-het-werkt">Hoe het werkt</Link></li>
+              <li><Link className="hover:text-primary" to="/veelgestelde-vragen">Veelgestelde vragen</Link></li>
+              <li><Link className="hover:text-primary" to="/reviews">Reviews</Link></li>
+              <li><Link className="hover:text-primary" to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -71,7 +72,6 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* Bold brand bar */}
       <div className="bg-primary py-3">
         <div className="container-tight text-center text-sm font-semibold text-primary-foreground">
           Rijschool Groningen · Rijles Groningen · Rijbewijs halen Groningen · Proefles aanvragen
