@@ -39,18 +39,18 @@ export const Header = () => {
           : "bg-transparent"
       )}
     >
-      <div className="container-tight flex h-16 items-center justify-between md:h-20">
+      <div className="container-tight flex h-14 items-center justify-between md:h-16">
         <Logo />
 
-        <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center gap-1">
+        <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center gap-0.5">
           {NAV.map((n) => (
             <NavLink
               key={n.to}
               to={n.to}
               className={({ isActive }) =>
                 cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-ink",
-                  isActive ? "text-ink bg-muted" : "text-ink-soft"
+                  "rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors hover:text-primary",
+                  isActive ? "text-primary" : "text-ink-soft"
                 )
               }
             >
@@ -59,20 +59,20 @@ export const Header = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-3">
           <a
             href={`tel:${CONTACT.phoneTel}`}
-            className="hidden xl:inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-primary"
+            className="hidden xl:inline-flex items-center gap-1.5 text-[13px] font-semibold text-ink-soft hover:text-primary"
           >
-            <Phone className="h-4 w-4" /> {CONTACT.phoneDisplay}
+            <Phone className="h-3.5 w-3.5" /> {CONTACT.phoneDisplay}
           </a>
-          <Button asChild size="sm" variant="hero">
+          <Button asChild size="sm" variant="hero" className="h-9 px-4 text-sm">
             <Link to="/contact">Plan een proefles</Link>
           </Button>
         </div>
 
         <button
-          className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background"
+          className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background"
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={open}
