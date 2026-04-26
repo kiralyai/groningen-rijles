@@ -1,76 +1,86 @@
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/contact";
 
-const packages = [
+export const completePackages = [
   {
-    name: "Proefles",
-    price: "€ 49",
-    unit: "/ 60 min",
-    description: "Maak vrijblijvend kennis en ervaar mijn manier van lesgeven.",
+    name: "Pakket A",
+    subtitle: "Rijlessen tot je slaagt",
+    description: "Inclusief praktijkexamen + gratis herexamen. Ideaal als je zekerheid wilt.",
+    price: "€ 2.275,-",
+    priceLabel: "Nu tijdelijk",
     features: [
-      "60 minuten rijden",
-      "Persoonlijke intake",
-      "Tips voor jouw start",
-      "Geen verdere verplichtingen",
+      "Onbeperkt rijlessen tot je rijbewijs is gehaald",
+      "Inclusief praktijkexamen en herexamen indien nodig",
+      "Inclusief leerling zelfplan-app",
+      "Betalen in 2 termijnen mogelijk",
     ],
-    cta: "Plan je proefles",
+    footnote: "Ideaal voor leerlingen die zeker willen weten dat ze genoeg lessen hebben.",
     highlight: false,
   },
   {
-    name: "Startpakket 10 lessen",
-    price: "€ 575",
-    unit: "10 × 60 min",
-    description: "De ideale start als je net begint of al wat ervaring hebt.",
+    name: "Pakket B",
+    subtitle: "30 rijlessen",
+    description: "Inclusief praktijkexamen + gratis herexamen. Onze meest gekozen optie.",
+    price: "€ 1.980,-",
+    priceLabel: "Nu",
     features: [
-      "10 rijlessen van 60 min",
-      "Vaste instructeur",
-      "Persoonlijk lesplan",
-      "Voortgangsoverzicht",
+      "30 rijlessen",
+      "Praktijkexamen inbegrepen",
+      "Gratis herexamen indien nodig",
+      "Inclusief leerling zelfplan-app",
+      "Betalen in 2 termijnen mogelijk (zie FAQ)",
     ],
-    cta: "Kies dit pakket",
+    footnote: "Perfect voor leerlingen die al wat ervaring hebben of snel leren.",
     highlight: true,
     badge: "Meest gekozen",
   },
   {
-    name: "Examenpakket",
-    price: "€ 1.295",
-    unit: "20 lessen + examen",
-    description: "Volledig pakket inclusief tussentijdse toets en praktijkexamen.",
+    name: "Pakket C",
+    subtitle: "20 rijlessen",
+    description: "Inclusief praktijkexamen. Voor leerlingen met een goede basis.",
+    price: "€ 1.570,-",
+    priceLabel: "Nu",
     features: [
-      "20 rijlessen van 60 min",
-      "Tussentijdse toets (TTT)",
-      "Praktijkexamen CBR",
-      "Examengarantie-advies",
+      "20 rijlessen",
+      "Praktijkexamen inbegrepen",
+      "Inclusief leerling zelfplan-app",
     ],
-    cta: "Vraag info aan",
+    footnote: "Geschikt voor leerlingen die al redelijk zelfstandig kunnen rijden.",
     highlight: false,
   },
 ];
 
-export const Packages = () => {
+interface PackagesProps {
+  showHeading?: boolean;
+}
+
+export const Packages = ({ showHeading = true }: PackagesProps) => {
   return (
     <section id="pakketten" className="section-pad">
       <div className="container-tight">
-        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Pakketten & tarieven</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink">
-              Eerlijke prijzen.<br />Geen kleine lettertjes.
-            </h2>
+        {showHeading && (
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Complete rijlespakketten</p>
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink">
+                Eerlijke prijzen.<br />Geen kleine lettertjes.
+              </h2>
+            </div>
+            <p className="max-w-md text-ink-soft">
+              Bij Ron Bakker Rijschool weet je altijd precies waar je aan toe bent. Duidelijke tarieven en complete pakketten waarmee je goed voorbereid naar je praktijkexamen gaat.
+            </p>
           </div>
-          <p className="max-w-md text-ink-soft">
-            Liever losse lessen of maatwerk? Geen probleem — we bespreken samen wat het beste bij jou past.
-          </p>
-        </div>
+        )}
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {packages.map((p) => (
+        <div className={`${showHeading ? "mt-12" : ""} grid gap-6 lg:grid-cols-3`}>
+          {completePackages.map((p) => (
             <article
               key={p.name}
               className={`relative flex flex-col rounded-3xl border p-7 transition-all duration-300 ${
                 p.highlight
-                  ? "border-primary bg-ink text-primary-foreground shadow-[var(--shadow-glow)] scale-[1.02]"
+                  ? "border-primary bg-ink text-primary-foreground shadow-[var(--shadow-glow)] lg:scale-[1.02]"
                   : "border-border bg-card hover:-translate-y-1 hover:shadow-[var(--shadow-card)]"
               }`}
             >
@@ -79,41 +89,55 @@ export const Packages = () => {
                   <Sparkles className="h-3 w-3" /> {p.badge}
                 </span>
               )}
-              <h3 className={`font-display text-xl font-bold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
-                {p.name}
+              <h3 className={`font-display text-2xl font-extrabold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
+                {p.name.split(" ")[0]} <span className="text-primary">{p.name.split(" ")[1]}</span>
               </h3>
+              <p className={`mt-2 font-display text-base font-bold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
+                {p.subtitle}
+              </p>
               <p className={`mt-1 text-sm ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
                 {p.description}
               </p>
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className={`font-display text-4xl font-extrabold ${p.highlight ? "text-primary-foreground" : "text-ink"}`}>
-                  {p.price}
-                </span>
-                <span className={`text-sm ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
-                  {p.unit}
-                </span>
-              </div>
 
               <ul className="mt-6 space-y-3">
                 {p.features.map((f) => (
                   <li key={f} className={`flex items-start gap-3 text-sm ${p.highlight ? "text-primary-foreground/90" : "text-ink"}`}>
-                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${p.highlight ? "text-primary" : "text-primary"}`} />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     {f}
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-col gap-2">
+              <p className={`mt-6 text-xs italic ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
+                {p.footnote}
+              </p>
+
+              <div className="mt-6 flex items-baseline gap-2">
+                <span className={`text-xs font-semibold uppercase tracking-wider ${p.highlight ? "text-primary-foreground/70" : "text-ink-soft"}`}>
+                  {p.priceLabel}:
+                </span>
+                <span className={`font-display text-3xl font-extrabold ${p.highlight ? "text-primary" : "text-primary"}`}>
+                  {p.price}
+                </span>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-2">
+                <Button asChild variant={p.highlight ? "hero" : "default"} size="lg">
+                  <Link to="/contact">
+                    Plan proefles <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
                 <Button
                   asChild
-                  variant={p.highlight ? "hero" : "default"}
-                  className={p.highlight ? "" : ""}
-                  size="lg"
+                  variant="ghost"
+                  size="sm"
+                  className={p.highlight ? "text-primary-foreground/80 hover:bg-white/10 hover:text-primary-foreground" : ""}
                 >
-                  <a href="#contact">{p.cta}</a>
-                </Button>
-                <Button asChild variant="ghost" size="sm" className={p.highlight ? "text-primary-foreground/80 hover:bg-white/10 hover:text-primary-foreground" : ""}>
-                  <a href={whatsappLink(`Hoi Ron, ik heb interesse in het ${p.name}-pakket. Kun je me meer informatie geven?`)} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={whatsappLink(`Hoi Ron, ik heb interesse in ${p.name} (${p.subtitle}). Kun je me meer informatie geven?`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Vraag via WhatsApp
                   </a>
                 </Button>
@@ -121,10 +145,6 @@ export const Packages = () => {
             </article>
           ))}
         </div>
-
-        <p className="mt-8 text-center text-xs text-ink-soft">
-          Alle prijzen zijn inclusief btw. Wijzigingen voorbehouden.
-        </p>
       </div>
     </section>
   );
