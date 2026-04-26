@@ -62,9 +62,8 @@ export const Hero = () => {
             </a>
 
             {/* Trust strip */}
-            <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-6 max-w-lg">
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-6 max-w-md">
               <TrustStat value="20+" label="Jaar ervaring" />
-              <TrustStat value="98%" label="Slaagt met plezier" />
               <TrustStat value="1" label="Vaste instructeur" />
             </div>
           </div>

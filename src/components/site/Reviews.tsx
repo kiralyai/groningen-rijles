@@ -1,4 +1,13 @@
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { Star, Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const reviews = [
   {
@@ -121,6 +130,10 @@ interface ReviewsProps {
 
 export const Reviews = ({ limit }: ReviewsProps = {}) => {
   const list = limit ? reviews.slice(0, limit) : reviews;
+  const autoplay = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
+
   return (
     <section id="reviews" className="section-pad bg-ink text-primary-foreground relative overflow-hidden">
       <div aria-hidden className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
@@ -148,35 +161,47 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((r) => (
-            <figure
-              key={r.name + r.date}
-              className="relative flex flex-col rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition-transform hover:-translate-y-1"
-            >
-              <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
-              <div className="flex text-primary">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
-              {r.badge && (
-                <span className="mt-3 inline-flex w-fit items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-glow">
-                  ✓ {r.badge}
-                </span>
-              )}
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-white/95">"{r.text}"</blockquote>
-              <figcaption className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
-                  {r.name[0]}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">{r.name}</p>
-                  <p className="text-xs text-white/60">{r.date}</p>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
+        <div className="mt-12 relative">
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[autoplay.current]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {list.map((r) => (
+                <CarouselItem
+                  key={r.name + r.date}
+                  className="pl-4 sm:basis-1/2 lg:basis-1/3"
+                >
+                  <figure className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+                    <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
+                    <div className="flex text-primary">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                    {r.badge && (
+                      <span className="mt-3 inline-flex w-fit items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-glow">
+                        ✓ {r.badge}
+                      </span>
+                    )}
+                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-white/95">"{r.text}"</blockquote>
+                    <figcaption className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
+                        {r.name[0]}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold">{r.name}</p>
+                        <p className="text-xs text-white/60">{r.date}</p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex -left-4 lg:-left-12 bg-white/10 border-white/20 text-white hover:bg-primary hover:text-primary-foreground hover:border-primary" />
+            <CarouselNext className="hidden sm:flex -right-4 lg:-right-12 bg-white/10 border-white/20 text-white hover:bg-primary hover:text-primary-foreground hover:border-primary" />
+          </Carousel>
         </div>
       </div>
     </section>
