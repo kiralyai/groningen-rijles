@@ -140,25 +140,12 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
       <div aria-hidden className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
 
       <div className="container-tight relative">
-        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-glow">Ervaringen van leerlingen</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold">
-              Wat leerlingen <span className="text-primary">zeggen</span>.
-            </h2>
-            <p className="mt-3 text-white/70">Echte berichten uit het gastenboek. Veel leerlingen slagen in één keer.</p>
-          </div>
-          <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 backdrop-blur">
-            <div className="flex text-primary">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-current" />
-              ))}
-            </div>
-            <div>
-              <p className="font-display text-lg font-bold leading-none">5,0 / 5</p>
-              <p className="text-xs text-white/70">Gemiddeld cijfer</p>
-            </div>
-          </div>
+        <div className="max-w-xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-glow">Ervaringen van leerlingen</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold">
+            Wat leerlingen <span className="text-primary">zeggen</span>.
+          </h2>
+          <p className="mt-3 text-white/70">Echte berichten uit het gastenboek. Veel leerlingen slagen in één keer.</p>
         </div>
 
         <div className="mt-12 relative">
