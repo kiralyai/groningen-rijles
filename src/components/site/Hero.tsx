@@ -58,7 +58,7 @@ export const Hero = () => {
               className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink-soft hover:text-ink"
             >
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground text-[10px] font-bold">W</span>
-              Snelle reactie via WhatsApp · meestal binnen 1 uur
+              Snelle reactie via WhatsApp
             </a>
 
             {/* Trust strip */}
@@ -87,18 +87,25 @@ export const Hero = () => {
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
 
                 {/* Bottom testimonial overlay */}
-                <div className="absolute inset-x-4 bottom-4 rounded-2xl bg-background/95 backdrop-blur-md border border-border p-4 shadow-[var(--shadow-soft)]">
+                <a
+                  href="https://share.google/ywFWVgsWRqtWRsyT0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-x-4 bottom-4 block rounded-2xl bg-background/95 backdrop-blur-md border border-border p-3 sm:p-4 shadow-[var(--shadow-soft)] hover:bg-background transition"
+                  aria-label="Lees alle Google reviews van Ron Bakker Rijschool"
+                >
                   <div className="flex items-center gap-1 text-primary">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-current" />
                     ))}
                     <span className="ml-1 text-xs font-semibold text-ink">5,0</span>
+                    <span className="ml-2 text-[10px] sm:text-xs font-semibold text-ink-soft uppercase tracking-wide">Google</span>
                   </div>
-                  <p className="mt-2 text-sm text-ink leading-snug">
-                    “Rustige uitleg, geduldig en duidelijk. In één keer geslaagd!”
+                  <p className="mt-2 text-xs sm:text-sm text-ink leading-snug">
+                    "Aardige man met goede humor, zeker aan te raden. Neemt goed de tijd voor dingen als je het niet helemaal beheerst. Vandaag in 1x geslaagd 👍🏼"
                   </p>
-                  <p className="mt-1 text-xs text-ink-soft">- Lisa, geslaagd in 2025</p>
-                </div>
+                  <p className="mt-1 text-[11px] sm:text-xs text-ink-soft">Marco Kregel · Google review</p>
+                </a>
               </div>
 
               {/* Floating chip - top left */}
