@@ -160,7 +160,13 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
                   key={r.name + r.date}
                   className="pl-4 sm:basis-1/2 lg:basis-1/3"
                 >
-                  <figure className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+                  <a
+                    href="https://share.google/ywFWVgsWRqtWRsyT0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Lees alle Google reviews. Review van ${r.name}`}
+                    className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10"
+                  >
                     <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
                     <div className="flex text-primary">
                       {Array.from({ length: 5 }).map((_, i) => (
@@ -173,7 +179,7 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
                       </span>
                     )}
                     <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-white/95">"{r.text}"</blockquote>
-                    <figcaption className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                    <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
                         {r.name[0]}
                       </div>
@@ -181,8 +187,8 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
                         <p className="text-sm font-semibold">{r.name}</p>
                         <p className="text-xs text-white/60">{r.date}</p>
                       </div>
-                    </figcaption>
-                  </figure>
+                    </div>
+                  </a>
                 </CarouselItem>
               ))}
             </CarouselContent>
