@@ -1,18 +1,19 @@
-import { Link } from "react-router-dom";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const GOOGLE_REVIEWS_URL = "https://share.google/ywFWVgsWRqtWRsyT0";
+
 const reviews = [
   {
-    name: "Lisa V.",
+    name: "Marco Kregel",
     city: "Groningen",
-    text: "Ron is geduldig en rustig. Ik had veel faalangst, maar door zijn duidelijke uitleg ben ik in één keer geslaagd!",
-    year: "2025",
+    text: "Aardige man met goede humor, zeker aan te raden. Neemt goed de tijd voor dingen als je het niet helemaal beheerst. Vandaag in 1x geslaagd 👍🏼",
+    year: "2024",
   },
   {
-    name: "Daan K.",
-    city: "Haren",
-    text: "Eindelijk een rijschool waar je niet één van de honderd bent. Vaste tijden, vaste instructeur - top.",
+    name: "Joshua Franzé",
+    city: "Groningen",
+    text: "Top rijschool, aardige humoristische instructeur. Neemt de tijd voor je. In 1 keer geslaagd!",
     year: "2024",
   },
 ];
@@ -31,17 +32,20 @@ export const ReviewsPreview = () => (
           </h2>
         </div>
         <Button asChild variant="hero" size="lg">
-          <Link to="/reviews">
+          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
             Lees alle reviews <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
         </Button>
       </div>
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {reviews.map((r) => (
-          <figure
+          <a
             key={r.name}
-            className="relative rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm"
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10"
           >
             <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
             <div className="flex text-primary">
@@ -50,7 +54,7 @@ export const ReviewsPreview = () => (
               ))}
             </div>
             <blockquote className="mt-4 text-base leading-relaxed text-white/95">"{r.text}"</blockquote>
-            <figcaption className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
                 {r.name[0]}
               </div>
@@ -58,8 +62,8 @@ export const ReviewsPreview = () => (
                 <p className="text-sm font-semibold">{r.name}</p>
                 <p className="text-xs text-white/60">{r.city} · geslaagd {r.year}</p>
               </div>
-            </figcaption>
-          </figure>
+            </div>
+          </a>
         ))}
       </div>
     </div>
