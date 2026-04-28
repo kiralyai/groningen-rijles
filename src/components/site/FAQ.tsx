@@ -5,30 +5,6 @@ import { whatsappLink } from "@/lib/contact";
 
 const faqs = [
   {
-    q: "Hoeveel rijlessen heb ik gemiddeld nodig?",
-    a: "Het landelijk gemiddelde ligt rond de 35 tot 40 lessen. Tijdens de proefles maak ik samen met jou een realistische inschatting op basis van je voorkennis en leerstijl.",
-  },
-  {
-    q: "Wat kost een proefles?",
-    a: "Een proefles van 60 minuten kost € 49 en is volledig vrijblijvend. Je ervaart direct hoe het rijden in mijn lesauto bevalt en hoe ik lesgeef.",
-  },
-  {
-    q: "Kan ik bij faalangst toch lessen volgen?",
-    a: "Absoluut. Veel van mijn leerlingen kwamen juist vanwege faalangst. Ik werk in een rustig tempo, met duidelijke uitleg en zonder druk. Stap voor stap bouwen we vertrouwen op.",
-  },
-  {
-    q: "Krijg ik altijd dezelfde instructeur?",
-    a: "Ja, je rijdt altijd met mij: Ron. Eén vast vertrouwd gezicht, één lijn in de lessen, en lessen die naadloos op elkaar aansluiten.",
-  },
-  {
-    q: "In welke auto rijd ik les?",
-    a: "Je rijdt in een moderne Volkswagen T-Cross 1.0 TSI: overzichtelijk, comfortabel en uitgerust met alle moderne veiligheidssystemen.",
-  },
-  {
-    q: "Waar wordt er lesgegeven?",
-    a: "Het lesgebied is Groningen en omstreken. We oefenen in het stadsverkeer (centrum, rotondes, drukke kruispunten), op de A7 en A28, en alle bijzondere verrichtingen zoals parkeren en hellingproef.",
-  },
-  {
     q: "Als ik een keer niet kan of ziek ben, moet ik die les dan betalen?",
     a: "Nee, als je ziek bent dan is dat overmacht, daar kun je niks aan doen. Blijf in dat geval thuis om besmetting van anderen te voorkomen.",
   },
@@ -50,7 +26,7 @@ const faqs = [
   },
   {
     q: "Wanneer kan ik examen doen?",
-    a: "Als je examen wilt doen, moet je: 1) het theorie-examen hebben behaald (geen 1-daagse cursus); 2) de minimale leeftijd van 17 jaar hebben bereikt. De instructeur bepaalt in overleg met jou wanneer je echt klaar bent voor het praktijkexamen.",
+    a: "Als je examen wilt doen, moet je: 1) het theorie-examen hebben behaald (geen 1-daagse cursus); 2) de minimale leeftijd van 17 jaar hebben bereikt. De instructeur bepaalt in overleg met jou wanneer je echt aan het praktijkexamen toe bent.",
   },
   {
     q: "Als ik een botsing krijg tijdens de rijles, ben ik dan aansprakelijk?",
@@ -67,10 +43,6 @@ const faqs = [
   {
     q: "Kan ik mijn pakket in termijnen betalen?",
     a: "Ja, dat kan. Je kunt je rijlespakket in 2 maandelijkse termijnen betalen. Er wordt dan wel per termijn € 50,00 in rekening gebracht.",
-  },
-  {
-    q: "Hoe kan ik me aanmelden?",
-    a: "Het makkelijkst via het contactformulier op deze website of een berichtje via WhatsApp. Meestal reageer ik binnen 1 uur.",
   },
 ];
 
