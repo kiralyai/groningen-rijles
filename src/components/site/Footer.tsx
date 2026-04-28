@@ -52,7 +52,7 @@ export const Footer = () => {
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <Logo />
+            <Logo className="text-white" />
             <p className="mt-4 max-w-sm text-sm text-white/70 leading-relaxed">
               Persoonlijke rijschool in Groningen. Eén vaste instructeur, rustige uitleg en meer dan 20 jaar ervaring.
             </p>
