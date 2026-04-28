@@ -40,7 +40,7 @@ export const Header = () => {
       )}
     >
       <div className="container-tight flex h-14 items-center justify-between md:h-16">
-        <Logo />
+        <Logo className="text-ink" />
 
         <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center gap-0.5">
           {NAV.map((n) => (
