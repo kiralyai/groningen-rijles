@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Quote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -66,9 +67,9 @@ export const ReviewsPreview = () => {
             </h2>
           </div>
           <Button asChild variant="hero" size="lg">
-            <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
+            <Link to="/reviews">
               Lees alle reviews <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </Button>
         </div>
 
