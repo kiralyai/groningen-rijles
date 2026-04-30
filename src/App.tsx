@@ -12,6 +12,8 @@ import Vragen from "./pages/Vragen.tsx";
 import ReviewsPage from "./pages/ReviewsPage.tsx";
 import Contactpagina from "./pages/Contactpagina.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AdminLogin from "./pages/AdminLogin.tsx";
+import AdminReviews from "./pages/AdminReviews.tsx";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,8 @@ const App = () => (
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/contact" element={<Contactpagina />} />
           </Route>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/reviews" element={<AdminReviews />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
