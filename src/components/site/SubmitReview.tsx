@@ -95,10 +95,12 @@ export const SubmitReview = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                <div className="flex items-center gap-1 text-primary">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-current" />
-                  ))}
+                <div>
+                  <Label>Jouw beoordeling <span className="text-primary">*</span></Label>
+                  <div className="mt-2">
+                    <StarRating value={rating} onChange={setRating} size={28} />
+                  </div>
+                  {errors.rating && <p className="mt-1 text-xs text-destructive">{errors.rating}</p>}
                 </div>
 
                 <div>
