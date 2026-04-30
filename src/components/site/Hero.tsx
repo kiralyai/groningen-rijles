@@ -146,8 +146,6 @@ export const Hero = () => {
             <span className="hidden sm:inline">·</span>
             <span>CBR-erkende rijschool</span>
             <span className="hidden sm:inline">·</span>
-            <span>BOVAG-aangesloten gedragscode</span>
-            <span className="hidden sm:inline">·</span>
             <span>VW T-Cross lesauto</span>
           </div>
         </div>
