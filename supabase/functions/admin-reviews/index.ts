@@ -73,11 +73,13 @@ Deno.serve(async (req) => {
 
     let action = "list";
     let reviewId: string | undefined;
+    let newRating: number | undefined;
 
     if (req.method === "POST") {
       const body = await req.json().catch(() => ({}));
       action = body.action ?? "list";
       reviewId = body.id;
+      if (typeof body.rating === "number") newRating = body.rating;
     }
 
     if (action === "approve" && reviewId) {
@@ -89,11 +91,17 @@ Deno.serve(async (req) => {
     } else if (action === "delete" && reviewId) {
       const { error } = await adminClient.from("reviews").delete().eq("id", reviewId);
       if (error) throw error;
+    } else if (action === "rating" && reviewId && newRating && newRating >= 1 && newRating <= 5) {
+      const { error } = await adminClient
+        .from("reviews")
+        .update({ rating: Math.round(newRating) })
+        .eq("id", reviewId);
+      if (error) throw error;
     }
 
     const { data: reviews, error: reviewsError } = await adminClient
       .from("reviews")
-      .select("id, name, message, status, created_at")
+      .select("id, name, message, status, rating, created_at")
       .order("created_at", { ascending: false });
 
     if (reviewsError) throw reviewsError;
