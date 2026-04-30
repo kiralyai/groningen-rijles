@@ -25,7 +25,7 @@ Deno.serve(async (req) => {
 
     let query = client
       .from("reviews")
-      .select("id, name, message, created_at")
+      .select("id, name, message, rating, created_at")
       .eq("status", "approved")
       .order("created_at", { ascending: false });
 

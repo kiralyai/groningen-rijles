@@ -4,13 +4,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useSEO } from "@/lib/seo";
-import { Check, Trash2, LogOut, Inbox, Star } from "lucide-react";
+import { Check, Trash2, LogOut, Inbox } from "lucide-react";
+import { StarRating } from "@/components/site/StarRating";
 
 interface Review {
   id: string;
   name: string;
   message: string;
   status: string;
+  rating: number;
   created_at: string;
 }
 
@@ -28,7 +30,7 @@ const AdminReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [tab, setTab] = useState<"pending" | "approved">("pending");
 
-  const loadAdminReviews = async (body?: { action: string; id: string }) => {
+  const loadAdminReviews = async (body?: { action: string; id: string; rating?: number }) => {
     const { data, error } = await supabase.functions.invoke<{ reviews: Review[] }>("admin-reviews", {
       body: body ?? {},
     });
@@ -94,6 +96,11 @@ const AdminReviews = () => {
     if (!confirm("Weet je zeker dat je deze review wil verwijderen?")) return;
     const ok = await loadAdminReviews({ action: "delete", id });
     if (ok) toast({ title: "Review verwijderd" });
+  };
+
+  const updateRating = async (id: string, rating: number) => {
+    const ok = await loadAdminReviews({ action: "rating", id, rating });
+    if (ok) toast({ title: "Sterren bijgewerkt" });
   };
 
   const logout = async () => {
@@ -185,11 +192,11 @@ const AdminReviews = () => {
               <article key={r.id} className="card-elevated p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <div className="flex items-center gap-1 text-primary">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-current" />
-                      ))}
-                    </div>
+                    <StarRating
+                      value={r.rating ?? 5}
+                      onChange={(val) => updateRating(r.id, val)}
+                      size={20}
+                    />
                     <h3 className="mt-2 font-display text-lg font-bold text-ink">{r.name}</h3>
                     <p className="text-xs text-ink-soft">
                       {new Date(r.created_at).toLocaleString("nl-NL")}

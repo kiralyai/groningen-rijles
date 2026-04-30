@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { supabase } from "@/integrations/supabase/client";
+import { StarRating } from "@/components/site/StarRating";
 
 const reviews = [
   {
@@ -125,18 +126,26 @@ const reviews = [
   },
 ];
 
+interface ReviewItem {
+  name: string;
+  date: string;
+  text: string;
+  badge?: string;
+  rating: number;
+}
+
 interface ReviewsProps {
   limit?: number;
 }
 
 export const Reviews = ({ limit }: ReviewsProps = {}) => {
-  const [siteReviews, setSiteReviews] = useState<typeof reviews>([]);
+  const [siteReviews, setSiteReviews] = useState<ReviewItem[]>([]);
   const autoplay = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   useEffect(() => {
-    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; created_at: string }> }>("public-reviews")
+    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; rating: number; created_at: string }> }>("public-reviews")
       .then(({ data, error }) => {
         if (error || !data?.reviews) return;
         setSiteReviews(
@@ -144,12 +153,14 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
             name: r.name,
             date: new Date(r.created_at).toLocaleDateString("nl-NL"),
             text: r.message,
+            rating: r.rating ?? 5,
           }))
         );
       });
   }, []);
 
-  const combined = [...siteReviews, ...reviews];
+  const fallback: ReviewItem[] = reviews.map((r) => ({ ...r, rating: 5 }));
+  const combined = [...siteReviews, ...fallback];
   const list = limit ? combined.slice(0, limit) : combined;
 
   return (
@@ -186,11 +197,7 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
                     className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10"
                   >
                     <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
-                    <div className="flex text-primary">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-current" />
-                      ))}
-                    </div>
+                    <StarRating value={r.rating} size={16} readOnly />
                     {r.badge && (
                       <span className="mt-3 inline-flex w-fit items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-glow">
                         ✓ {r.badge}
