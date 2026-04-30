@@ -49,14 +49,23 @@ export const Contact = () => {
       return;
     }
     setErrors({});
-    setLoading(true);
-    // Simulate submission - connect to email/CRM/Sheets here
-    await new Promise((r) => setTimeout(r, 700));
-    setLoading(false);
+    const { firstName, lastName, phone, email, subject, message } = parsed.data;
+    const body = [
+      `Naam: ${firstName} ${lastName}`,
+      `Telefoon: ${phone}`,
+      `E-mail: ${email}`,
+      "",
+      "Bericht:",
+      message,
+    ].join("\n");
+    const mailto = `mailto:info@ron-bakker.nl?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
     setSubmitted(true);
     toast({
-      title: "Bedankt voor je aanvraag!",
-      description: "Ik neem zo snel mogelijk persoonlijk contact met je op.",
+      title: "Mail-app geopend",
+      description: "Klik in je mail-app op verzenden om je aanvraag te versturen.",
     });
   };
 
