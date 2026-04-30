@@ -7,12 +7,7 @@ const corsHeaders = {
 };
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-const publishableKeys = Deno.env.get("SUPABASE_PUBLISHABLE_KEYS");
 const secretKeys = Deno.env.get("SUPABASE_SECRET_KEYS");
-
-const supabasePublishableKey = publishableKeys
-  ? Object.values(JSON.parse(publishableKeys) as Record<string, string>)[0] ?? ""
-  : Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ?? Deno.env.get("SUPABASE_ANON_KEY") ?? "";
 
 const serviceRoleKey = secretKeys
   ? Object.values(JSON.parse(secretKeys) as Record<string, string>)[0] ?? ""
@@ -51,22 +46,6 @@ Deno.serve(async (req) => {
 
     const userId = typeof payload.sub === "string" ? payload.sub : null;
     if (!userId) {
-      return new Response(JSON.stringify({ error: "Ongeldige sessie" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const userClient = createClient(supabaseUrl, supabasePublishableKey, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-
-    const {
-      data: { user },
-      error: userError,
-    } = await userClient.auth.getUser(token);
-
-    if (userError || !user || user.id !== userId) {
       return new Response(JSON.stringify({ error: "Ongeldige sessie" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
