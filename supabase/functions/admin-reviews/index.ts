@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { createRemoteJWKSet, jwtVerify } from "npm:jose@5";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -6,16 +7,15 @@ const corsHeaders = {
 };
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-const publishableKeys = Deno.env.get("SUPABASE_PUBLISHABLE_KEYS");
 const secretKeys = Deno.env.get("SUPABASE_SECRET_KEYS");
-
-const supabasePublishableKey = publishableKeys
-  ? Object.values(JSON.parse(publishableKeys) as Record<string, string>)[0] ?? ""
-  : Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ?? Deno.env.get("SUPABASE_ANON_KEY") ?? "";
 
 const serviceRoleKey = secretKeys
   ? Object.values(JSON.parse(secretKeys) as Record<string, string>)[0] ?? ""
   : Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+
+const remoteJwks = supabaseUrl
+  ? createRemoteJWKSet(new URL(`${supabaseUrl}/auth/v1/.well-known/jwks.json`))
+  : null;
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -31,16 +31,21 @@ Deno.serve(async (req) => {
       });
     }
 
-    const userClient = createClient(supabaseUrl, supabasePublishableKey, {
-      global: { headers: { Authorization: authHeader } },
+    const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+    if (!token || !remoteJwks) {
+      return new Response(JSON.stringify({ error: "Ongeldige sessie" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const { payload } = await jwtVerify(token, remoteJwks, {
+      issuer: `${supabaseUrl}/auth/v1`,
+      audience: "authenticated",
     });
 
-    const {
-      data: { user },
-      error: userError,
-    } = await userClient.auth.getUser();
-
-    if (userError || !user) {
+    const userId = typeof payload.sub === "string" ? payload.sub : null;
+    if (!userId) {
       return new Response(JSON.stringify({ error: "Ongeldige sessie" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -54,7 +59,7 @@ Deno.serve(async (req) => {
     const { data: roleRow, error: roleError } = await adminClient
       .from("user_roles")
       .select("role")
-      .eq("user_id", user.id)
+      .eq("user_id", userId)
       .eq("role", "admin")
       .maybeSingle();
 

@@ -43,7 +43,7 @@ const AdminReviews = () => {
         });
         await supabase.auth.signOut();
         navigate("/admin/login", { replace: true });
-        return;
+        return false;
       }
 
       toast({
@@ -52,12 +52,13 @@ const AdminReviews = () => {
         variant: "destructive",
       });
       setLoading(false);
-      return;
+      return false;
     }
 
     setReviews(data?.reviews ?? []);
     setIsAdmin(true);
     setLoading(false);
+    return true;
   };
 
   useEffect(() => {
@@ -85,14 +86,14 @@ const AdminReviews = () => {
   }, []);
 
   const approve = async (id: string) => {
-    await loadAdminReviews({ action: "approve", id });
-    toast({ title: "Review goedgekeurd", description: "De review staat nu op de website." });
+    const ok = await loadAdminReviews({ action: "approve", id });
+    if (ok) toast({ title: "Review goedgekeurd", description: "De review staat nu op de website." });
   };
 
   const remove = async (id: string) => {
     if (!confirm("Weet je zeker dat je deze review wil verwijderen?")) return;
-    await loadAdminReviews({ action: "delete", id });
-    toast({ title: "Review verwijderd" });
+    const ok = await loadAdminReviews({ action: "delete", id });
+    if (ok) toast({ title: "Review verwijderd" });
   };
 
   const logout = async () => {
