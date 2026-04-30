@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Send, CheckCircle2, Star, ExternalLink } from "lucide-react";
+import { Send, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { StarRating } from "@/components/site/StarRating";
 
 const GOOGLE_REVIEWS_URL = "https://share.google/ywFWVgsWRqtWRsyT0";
 
@@ -17,6 +18,7 @@ const schema = z.object({
     .trim()
     .min(10, "Schrijf een korte review (minimaal 10 tekens)")
     .max(1000, "Review is te lang"),
+  rating: z.number().int().min(1, "Kies minimaal 1 ster").max(5),
 });
 
 export const SubmitReview = () => {
@@ -24,6 +26,7 @@ export const SubmitReview = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [rating, setRating] = useState(5);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ export const SubmitReview = () => {
     const data = {
       name: String(fd.get("name") || ""),
       message: String(fd.get("message") || ""),
+      rating,
     };
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
@@ -46,6 +50,7 @@ export const SubmitReview = () => {
     const { error } = await supabase.from("reviews").insert({
       name: parsed.data.name,
       message: parsed.data.message,
+      rating: parsed.data.rating,
     });
     setLoading(false);
     if (error) {
