@@ -26,7 +26,7 @@ export const Footer = () => {
             <h3 className="font-display text-2xl sm:text-3xl font-extrabold">
               Klaar om te starten met <span className="text-primary">rijlessen</span>?
             </h3>
-            <p className="mt-2 text-sm text-white/70">Plan vrijblijvend je proefles - meestal binnen 1 uur reactie.</p>
+            <p className="mt-2 text-sm text-white/70">Plan vrijblijvend je proefles en ontvang snel een persoonlijk antwoord.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
