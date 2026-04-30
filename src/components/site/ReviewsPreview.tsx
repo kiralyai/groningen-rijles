@@ -1,30 +1,41 @@
 import { useEffect, useState } from "react";
-import { Star, Quote, ArrowRight } from "lucide-react";
+import { Quote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { StarRating } from "@/components/site/StarRating";
 
 const GOOGLE_REVIEWS_URL = "https://share.google/ywFWVgsWRqtWRsyT0";
 
-const reviews = [
+interface PreviewItem {
+  name: string;
+  city: string;
+  text: string;
+  year: string;
+  rating: number;
+}
+
+const reviews: PreviewItem[] = [
   {
     name: "Marco Kregel",
     city: "Groningen",
     text: "Aardige man met goede humor, zeker aan te raden. Neemt goed de tijd voor dingen als je het niet helemaal beheerst. Vandaag in 1x geslaagd 👍🏼",
     year: "2024",
+    rating: 5,
   },
   {
     name: "Joshua Franzé",
     city: "Groningen",
     text: "Top rijschool, aardige humoristische instructeur. Neemt de tijd voor je. In 1 keer geslaagd!",
     year: "2024",
+    rating: 5,
   },
 ];
 
 export const ReviewsPreview = () => {
-  const [previewReviews, setPreviewReviews] = useState(reviews);
+  const [previewReviews, setPreviewReviews] = useState<PreviewItem[]>(reviews);
 
   useEffect(() => {
-    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; created_at: string }> }>("public-reviews", {
+    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; rating: number; created_at: string }> }>("public-reviews", {
       body: { limit: 2 },
     }).then(({ data, error }) => {
         if (error || !data?.reviews?.length) return;
@@ -35,6 +46,7 @@ export const ReviewsPreview = () => {
             city: "Groningen",
             text: review.message,
             year: new Date(review.created_at).getFullYear().toString(),
+            rating: review.rating ?? 5,
           }))
         );
       });
