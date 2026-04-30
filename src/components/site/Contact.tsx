@@ -56,7 +56,7 @@ export const Contact = () => {
     setSubmitted(true);
     toast({
       title: "Bedankt voor je aanvraag!",
-      description: "Ik neem zo snel mogelijk contact met je op - meestal binnen 1 uur.",
+      description: "Ik neem zo snel mogelijk persoonlijk contact met je op.",
     });
   };
 
@@ -161,7 +161,7 @@ export const Contact = () => {
               Liever direct contact?
             </h3>
             <p className="mt-3 text-ink-soft">
-              Bel, mail of stuur een berichtje via WhatsApp - je krijgt altijd persoonlijk antwoord.
+              Bel, mail of stuur een berichtje via WhatsApp. Je krijgt altijd persoonlijk antwoord.
             </p>
 
             <ul className="mt-8 space-y-5">

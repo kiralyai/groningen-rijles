@@ -5,7 +5,7 @@ export const CONTACT = {
   phoneDisplay: "06 48 33 19 92",
   phoneTel: "+31648331992",
   whatsappNumber: "31648331992", // international, no plus, for wa.me link
-  email: "info@ronbakkerrijschool.nl",
+  email: "info@ron-bakker.nl",
   street: "Aagje Dekenstraat 20",
   postal: "9721 RT Groningen",
   address: "Aagje Dekenstraat 20, 9721 RT Groningen",

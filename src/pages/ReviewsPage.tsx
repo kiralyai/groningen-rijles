@@ -1,5 +1,7 @@
 import { PageHero } from "@/components/site/PageHero";
 import { Reviews } from "@/components/site/Reviews";
+import { PassedSlideshow } from "@/components/site/PassedSlideshow";
+import { SubmitReview } from "@/components/site/SubmitReview";
 import { CTASection } from "@/components/site/CTASection";
 import { useSEO } from "@/lib/seo";
 
@@ -20,8 +22,11 @@ const ReviewsPage = () => {
             Wat leerlingen <span className="text-primary">zeggen</span>.
           </>
         }
+        description="Echte ervaringen van leerlingen die hun rijbewijs haalden bij Ron Bakker Rijschool."
       />
       <Reviews />
+      <PassedSlideshow />
+      <SubmitReview />
       <CTASection title="Word jij de volgende geslaagde leerling?" />
     </>
   );
