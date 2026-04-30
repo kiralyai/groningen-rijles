@@ -24,17 +24,13 @@ export const ReviewsPreview = () => {
   const [previewReviews, setPreviewReviews] = useState(reviews);
 
   useEffect(() => {
-    supabase
-      .from("reviews")
-      .select("name, message, created_at")
-      .eq("status", "approved")
-      .order("created_at", { ascending: false })
-      .limit(2)
-      .then(({ data, error }) => {
-        if (error || !data?.length) return;
+    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; created_at: string }> }>("public-reviews", {
+      body: { limit: 2 },
+    }).then(({ data, error }) => {
+        if (error || !data?.reviews?.length) return;
 
         setPreviewReviews(
-          data.map((review) => ({
+          data.reviews.map((review) => ({
             name: review.name,
             city: "Groningen",
             text: review.message,
