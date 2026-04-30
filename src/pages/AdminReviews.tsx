@@ -4,7 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useSEO } from "@/lib/seo";
-import { Check, Trash2, LogOut, Inbox } from "lucide-react";
+import { Check, Trash2, LogOut, Inbox, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import { StarRating } from "@/components/site/StarRating";
 
 interface Review {
@@ -149,9 +150,16 @@ const AdminReviews = () => {
             <h1 className="font-display text-xl font-bold text-ink">Reviews beheren</h1>
             <p className="text-xs text-ink-soft">Ron Bakker Rijschool</p>
           </div>
-          <Button variant="outline" size="sm" onClick={logout}>
-            <LogOut className="h-4 w-4" /> Uitloggen
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline" size="sm">
+              <Link to="/reviews">
+                <ArrowLeft className="h-4 w-4" /> Naar reviews
+              </Link>
+            </Button>
+            <Button variant="outline" size="sm" onClick={logout}>
+              <LogOut className="h-4 w-4" /> Uitloggen
+            </Button>
+          </div>
         </div>
       </header>
 
