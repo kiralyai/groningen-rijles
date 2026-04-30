@@ -14,12 +14,6 @@ interface Review {
   created_at: string;
 }
 
-const isTransientRoleError = (message?: string) => {
-  if (!message) return false;
-  const normalized = message.toLowerCase();
-  return normalized.includes("schema cache") || normalized.includes("503") || normalized.includes("failed to fetch");
-};
-
 const AdminReviews = () => {
   useSEO({
     title: "Reviews beheren | Ron Bakker Rijschool",
@@ -34,30 +28,34 @@ const AdminReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [tab, setTab] = useState<"pending" | "approved">("pending");
 
-  const checkAdminAccess = async (userId: string) => {
-    for (let attempt = 0; attempt < 3; attempt += 1) {
-      const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userId)
-        .eq("role", "admin")
-        .maybeSingle();
+  const loadAdminReviews = async () => {
+    const { data, error } = await supabase.functions.invoke<{ reviews: Review[] }>("admin-reviews");
 
-      if (data?.role === "admin") return { isAdmin: true as const, transientError: false };
-
-      if (error) {
-        if (isTransientRoleError(error.message) && attempt < 2) {
-          await new Promise((resolve) => window.setTimeout(resolve, 800 * (attempt + 1)));
-          continue;
-        }
-
-        return { isAdmin: false as const, transientError: isTransientRoleError(error.message), message: error.message };
+    if (error) {
+      const message = error.message.toLowerCase();
+      if (message.includes("403") || message.includes("geen adminrechten")) {
+        toast({
+          title: "Geen toegang",
+          description: "Dit account heeft geen admin-rechten.",
+          variant: "destructive",
+        });
+        await supabase.auth.signOut();
+        navigate("/admin/login", { replace: true });
+        return;
       }
 
-      return { isAdmin: false as const, transientError: false };
+      toast({
+        title: "Laden mislukt",
+        description: "De adminpagina kon niet worden geladen. Probeer het opnieuw.",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
     }
 
-    return { isAdmin: false as const, transientError: true, message: "De admincontrole kon tijdelijk niet worden geladen." };
+    setReviews(data?.reviews ?? []);
+    setIsAdmin(true);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -68,33 +66,9 @@ const AdminReviews = () => {
         navigate("/admin/login", { replace: true });
         return;
       }
-
-      const access = await checkAdminAccess(sess.session.user.id);
       if (!mounted) return;
 
-      if (!access.isAdmin) {
-        if (access.transientError) {
-          toast({
-            title: "Tijdelijk probleem",
-            description: "De adminrechten konden net niet worden gecontroleerd. Probeer het direct nog eens.",
-            variant: "destructive",
-          });
-          setLoading(false);
-          return;
-        }
-
-        toast({
-          title: "Geen toegang",
-          description: "Dit account heeft geen admin-rechten.",
-          variant: "destructive",
-        });
-        await supabase.auth.signOut();
-        navigate("/admin/login", { replace: true });
-        return;
-      }
-      setIsAdmin(true);
-      await loadReviews();
-      setLoading(false);
+      await loadAdminReviews();
     };
     init();
 
@@ -108,18 +82,6 @@ const AdminReviews = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadReviews = async () => {
-    const { data, error } = await supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (error) {
-      toast({ title: "Laden mislukt", description: error.message, variant: "destructive" });
-      return;
-    }
-    setReviews(data || []);
-  };
-
   const approve = async (id: string) => {
     const { error } = await supabase.from("reviews").update({ status: "approved" }).eq("id", id);
     if (error) {
@@ -127,7 +89,7 @@ const AdminReviews = () => {
       return;
     }
     toast({ title: "Review goedgekeurd", description: "De review staat nu op de website." });
-    loadReviews();
+    loadAdminReviews();
   };
 
   const remove = async (id: string) => {
@@ -138,7 +100,7 @@ const AdminReviews = () => {
       return;
     }
     toast({ title: "Review verwijderd" });
-    loadReviews();
+    loadAdminReviews();
   };
 
   const logout = async () => {
