@@ -126,18 +126,26 @@ const reviews = [
   },
 ];
 
+interface ReviewItem {
+  name: string;
+  date: string;
+  text: string;
+  badge?: string;
+  rating: number;
+}
+
 interface ReviewsProps {
   limit?: number;
 }
 
 export const Reviews = ({ limit }: ReviewsProps = {}) => {
-  const [siteReviews, setSiteReviews] = useState<typeof reviews>([]);
+  const [siteReviews, setSiteReviews] = useState<ReviewItem[]>([]);
   const autoplay = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   useEffect(() => {
-    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; created_at: string }> }>("public-reviews")
+    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; rating: number; created_at: string }> }>("public-reviews")
       .then(({ data, error }) => {
         if (error || !data?.reviews) return;
         setSiteReviews(
@@ -145,12 +153,14 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
             name: r.name,
             date: new Date(r.created_at).toLocaleDateString("nl-NL"),
             text: r.message,
+            rating: r.rating ?? 5,
           }))
         );
       });
   }, []);
 
-  const combined = [...siteReviews, ...reviews];
+  const fallback: ReviewItem[] = reviews.map((r) => ({ ...r, rating: 5 }));
+  const combined = [...siteReviews, ...fallback];
   const list = limit ? combined.slice(0, limit) : combined;
 
   return (
