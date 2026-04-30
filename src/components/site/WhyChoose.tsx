@@ -37,14 +37,20 @@ export const WhyChoose = () => {
   return (
     <section id="waarom" className="section-pad bg-surface">
       <div className="container-tight">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Waarom Ron Bakker</p>
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Hoe Ron lesgeeft</p>
           <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink">
-            Rijles in Groningen die <span className="text-gradient-primary">echt past</span> bij hoe jij leert.
+            Een aanpak die <span className="text-gradient-primary">echt blijft hangen</span>.
           </h2>
-          <p className="mt-4 text-ink-soft text-lg">
-            Geen lopende band, geen wisselende instructeurs. Wel persoonlijke aandacht, een rustige aanpak en lessen
-            die naadloos aansluiten op jouw ontwikkeling.
+          <p className="mt-4 text-ink-soft text-lg leading-relaxed">
+            Iedere leerling leert anders. Daarom kijkt Ron eerst waar jij staat en bouwt de lessen daaromheen op.
+            Korte en duidelijke instructies, daarna direct zelf doen, en na afloop samen kort terugblikken op wat goed
+            ging en wat de volgende keer beter kan.
+          </p>
+          <p className="mt-4 text-ink-soft text-lg leading-relaxed">
+            Geen standaard programma uit een map, maar lessen die meebewegen met jouw groei. Ben je onzeker of heb je
+            faalangst? Dan gaan we rustiger en kleiner beginnen. Pak je het snel op? Dan bouwen we het tempo en de
+            uitdaging op. Zo werk je elke les aan iets wat voor jou nu het belangrijkst is.
           </p>
         </div>
 

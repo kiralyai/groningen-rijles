@@ -16,8 +16,8 @@ const Waarom = () => {
     <>
       <PageHero
         eyebrow="Waarom wij"
-        title={<>Persoonlijk. Rustig. <span className="text-primary">Lokaal in Groningen.</span></>}
-        description="Geen anonieme rijschool met wisselende instructeurs. Bij Ron Bakker krijg je een vaste, ervaren rij-instructeur die jouw naam, jouw tempo én jouw twijfels kent."
+        title={<>Rijles in Groningen, <span className="text-primary">op jouw tempo</span>.</>}
+        description="Persoonlijke begeleiding. Rustige aanpak. Gericht op jouw succes."
       />
       <WhyChoose />
       <About />
