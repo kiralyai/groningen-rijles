@@ -136,15 +136,11 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
   );
 
   useEffect(() => {
-    supabase
-      .from("reviews")
-      .select("name, message, created_at")
-      .eq("status", "approved")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        if (!data) return;
+    supabase.functions.invoke<{ reviews: Array<{ name: string; message: string; created_at: string }> }>("public-reviews")
+      .then(({ data, error }) => {
+        if (error || !data?.reviews) return;
         setSiteReviews(
-          data.map((r) => ({
+          data.reviews.map((r) => ({
             name: r.name,
             date: new Date(r.created_at).toLocaleDateString("nl-NL"),
             text: r.message,
