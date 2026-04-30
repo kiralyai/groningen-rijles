@@ -197,11 +197,7 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
                     className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10"
                   >
                     <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
-                    <div className="flex text-primary">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-current" />
-                      ))}
-                    </div>
+                    <StarRating value={r.rating} size={16} readOnly />
                     {r.badge && (
                       <span className="mt-3 inline-flex w-fit items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-glow">
                         ✓ {r.badge}
