@@ -143,7 +143,7 @@ export const Reviews = ({ limit }: ReviewsProps = {}) => {
         <div className="max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-glow">Ervaringen van leerlingen</p>
           <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold">
-            Wat leerlingen <span className="text-primary">zeggen</span>.
+            Hoe leerlingen hun <span className="text-primary">rijlessen</span> hebben ervaren.
           </h2>
           <p className="mt-3 text-white/70">Echte berichten uit het gastenboek. Veel leerlingen slagen in één keer.</p>
         </div>
