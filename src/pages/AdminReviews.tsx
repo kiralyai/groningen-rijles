@@ -14,6 +14,12 @@ interface Review {
   created_at: string;
 }
 
+const isTransientRoleError = (message?: string) => {
+  if (!message) return false;
+  const normalized = message.toLowerCase();
+  return normalized.includes("schema cache") || normalized.includes("503") || normalized.includes("failed to fetch");
+};
+
 const AdminReviews = () => {
   useSEO({
     title: "Reviews beheren | Ron Bakker Rijschool",
@@ -28,6 +34,32 @@ const AdminReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [tab, setTab] = useState<"pending" | "approved">("pending");
 
+  const checkAdminAccess = async (userId: string) => {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const { data, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("role", "admin")
+        .maybeSingle();
+
+      if (data?.role === "admin") return { isAdmin: true as const, transientError: false };
+
+      if (error) {
+        if (isTransientRoleError(error.message) && attempt < 2) {
+          await new Promise((resolve) => window.setTimeout(resolve, 800 * (attempt + 1)));
+          continue;
+        }
+
+        return { isAdmin: false as const, transientError: isTransientRoleError(error.message), message: error.message };
+      }
+
+      return { isAdmin: false as const, transientError: false };
+    }
+
+    return { isAdmin: false as const, transientError: true, message: "De admincontrole kon tijdelijk niet worden geladen." };
+  };
+
   useEffect(() => {
     let mounted = true;
     const init = async () => {
@@ -36,14 +68,21 @@ const AdminReviews = () => {
         navigate("/admin/login", { replace: true });
         return;
       }
-      const { data: roleRow } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", sess.session.user.id)
-        .eq("role", "admin")
-        .maybeSingle();
+
+      const access = await checkAdminAccess(sess.session.user.id);
       if (!mounted) return;
-      if (!roleRow) {
+
+      if (!access.isAdmin) {
+        if (access.transientError) {
+          toast({
+            title: "Tijdelijk probleem",
+            description: "De adminrechten konden net niet worden gecontroleerd. Probeer het direct nog eens.",
+            variant: "destructive",
+          });
+          setLoading(false);
+          return;
+        }
+
         toast({
           title: "Geen toegang",
           description: "Dit account heeft geen admin-rechten.",
@@ -107,10 +146,31 @@ const AdminReviews = () => {
     navigate("/admin/login", { replace: true });
   };
 
-  if (loading || !isAdmin) {
+  if (loading) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-surface">
         <p className="text-ink-soft">Laden...</p>
+      </main>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-surface px-4">
+        <div className="card-elevated w-full max-w-md p-6 text-center">
+          <h1 className="font-display text-xl font-bold text-ink">Admincontrole mislukt</h1>
+          <p className="mt-2 text-sm text-ink-soft">
+            Je bent wel ingelogd, maar de controle op adminrechten gaf tijdelijk geen antwoord.
+          </p>
+          <div className="mt-4 flex justify-center gap-3">
+            <Button variant="hero" onClick={() => window.location.reload()}>
+              Opnieuw proberen
+            </Button>
+            <Button variant="outline" onClick={logout}>
+              Uitloggen
+            </Button>
+          </div>
+        </div>
       </main>
     );
   }
