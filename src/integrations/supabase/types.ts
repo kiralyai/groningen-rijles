@@ -20,6 +20,7 @@ export type Database = {
           id: string
           message: string
           name: string
+          rating: number
           status: string
         }
         Insert: {
@@ -27,6 +28,7 @@ export type Database = {
           id?: string
           message: string
           name: string
+          rating?: number
           status?: string
         }
         Update: {
@@ -34,6 +36,7 @@ export type Database = {
           id?: string
           message?: string
           name?: string
+          rating?: number
           status?: string
         }
         Relationships: []

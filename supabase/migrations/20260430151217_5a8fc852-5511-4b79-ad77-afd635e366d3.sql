@@ -1,0 +1,1 @@
+ALTER TABLE public.reviews ADD COLUMN IF NOT EXISTS rating smallint NOT NULL DEFAULT 5 CHECK (rating BETWEEN 1 AND 5);
