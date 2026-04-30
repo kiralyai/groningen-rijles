@@ -82,11 +82,7 @@ export const ReviewsPreview = () => {
               className="group relative block rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm transition hover:border-primary/40 hover:bg-white/10"
             >
               <Quote className="absolute right-6 top-6 h-8 w-8 text-primary/40" />
-              <div className="flex text-primary">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
+              <StarRating value={r.rating} size={16} readOnly />
               <blockquote className="mt-4 text-base leading-relaxed text-white/95">"{r.text}"</blockquote>
               <div className="mt-5 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
