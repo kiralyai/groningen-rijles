@@ -151,7 +151,23 @@ export const Footer = () => {
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {CONTACT.name} · Alle rechten voorbehouden</p>
-          <p>Rijschool Groningen · Rijles Groningen · Rijbewijs halen Groningen</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Link to="/admin/reviews" className="text-white/60 transition-colors hover:text-primary">
+              Admin
+            </Link>
+            <span className="hidden sm:inline">·</span>
+            <span>
+              Gemaakt door{" "}
+              <a
+                href="https://kiralyai.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 transition-colors hover:text-primary"
+              >
+                KiralyAI
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
