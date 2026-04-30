@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Star, Quote } from "lucide-react";
 import {
@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { supabase } from "@/integrations/supabase/client";
 
 const reviews = [
   {
@@ -129,10 +130,31 @@ interface ReviewsProps {
 }
 
 export const Reviews = ({ limit }: ReviewsProps = {}) => {
-  const list = limit ? reviews.slice(0, limit) : reviews;
+  const [siteReviews, setSiteReviews] = useState<typeof reviews>([]);
   const autoplay = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
+
+  useEffect(() => {
+    supabase
+      .from("reviews")
+      .select("name, message, created_at")
+      .eq("status", "approved")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => {
+        if (!data) return;
+        setSiteReviews(
+          data.map((r) => ({
+            name: r.name,
+            date: new Date(r.created_at).toLocaleDateString("nl-NL"),
+            text: r.message,
+          }))
+        );
+      });
+  }, []);
+
+  const combined = [...siteReviews, ...reviews];
+  const list = limit ? combined.slice(0, limit) : combined;
 
   return (
     <section id="reviews" className="section-pad bg-ink text-primary-foreground relative overflow-hidden">
