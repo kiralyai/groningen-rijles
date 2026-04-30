@@ -6,8 +6,16 @@ const corsHeaders = {
 };
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-const supabasePublishableKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ?? "";
-const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+const publishableKeys = Deno.env.get("SUPABASE_PUBLISHABLE_KEYS");
+const secretKeys = Deno.env.get("SUPABASE_SECRET_KEYS");
+
+const supabasePublishableKey = publishableKeys
+  ? Object.values(JSON.parse(publishableKeys) as Record<string, string>)[0] ?? ""
+  : Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ?? Deno.env.get("SUPABASE_ANON_KEY") ?? "";
+
+const serviceRoleKey = secretKeys
+  ? Object.values(JSON.parse(secretKeys) as Record<string, string>)[0] ?? ""
+  : Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
