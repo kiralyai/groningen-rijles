@@ -1,5 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-import { createLocalJWKSet, createRemoteJWKSet, jwtVerify } from "npm:jose@5";
+import { createRemoteJWKSet, jwtVerify } from "npm:jose@5";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,8 +18,6 @@ const serviceRoleKey = secretKeys
   ? Object.values(JSON.parse(secretKeys) as Record<string, string>)[0] ?? ""
   : Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
-const jwksSecret = Deno.env.get("SUPABASE_JWKS");
-const localJwks = jwksSecret ? createLocalJWKSet(JSON.parse(jwksSecret)) : null;
 const remoteJwks = supabaseUrl
   ? createRemoteJWKSet(new URL(`${supabaseUrl}/auth/v1/.well-known/jwks.json`))
   : null;
@@ -39,14 +37,14 @@ Deno.serve(async (req) => {
     }
 
     const token = authHeader.replace(/^Bearer\s+/i, "").trim();
-    if (!token || (!localJwks && !remoteJwks)) {
+    if (!token || !remoteJwks) {
       return new Response(JSON.stringify({ error: "Ongeldige sessie" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const { payload } = await jwtVerify(token, localJwks ?? remoteJwks!, {
+    const { payload } = await jwtVerify(token, remoteJwks, {
       issuer: `${supabaseUrl}/auth/v1`,
       audience: "authenticated",
     });
