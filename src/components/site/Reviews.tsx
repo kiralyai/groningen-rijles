@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { supabase } from "@/integrations/supabase/client";
+import { StarRating } from "@/components/site/StarRating";
 
 const reviews = [
   {
