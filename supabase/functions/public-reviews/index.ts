@@ -15,7 +15,8 @@ Deno.serve(async (req) => {
 
   try {
     const url = new URL(req.url);
-    const limitParam = Number(url.searchParams.get("limit") ?? "0");
+    const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
+    const limitParam = Number(body.limit ?? url.searchParams.get("limit") ?? "0");
     const limit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 50) : null;
 
     const client = createClient(supabaseUrl, serviceRoleKey, {
