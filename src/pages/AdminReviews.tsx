@@ -28,8 +28,10 @@ const AdminReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [tab, setTab] = useState<"pending" | "approved">("pending");
 
-  const loadAdminReviews = async () => {
-    const { data, error } = await supabase.functions.invoke<{ reviews: Review[] }>("admin-reviews");
+  const loadAdminReviews = async (body?: { action: string; id: string }) => {
+    const { data, error } = await supabase.functions.invoke<{ reviews: Review[] }>("admin-reviews", {
+      body: body ?? {},
+    });
 
     if (error) {
       const message = error.message.toLowerCase();
@@ -83,24 +85,14 @@ const AdminReviews = () => {
   }, []);
 
   const approve = async (id: string) => {
-    const { error } = await supabase.from("reviews").update({ status: "approved" }).eq("id", id);
-    if (error) {
-      toast({ title: "Goedkeuren mislukt", description: error.message, variant: "destructive" });
-      return;
-    }
+    await loadAdminReviews({ action: "approve", id });
     toast({ title: "Review goedgekeurd", description: "De review staat nu op de website." });
-    loadAdminReviews();
   };
 
   const remove = async (id: string) => {
     if (!confirm("Weet je zeker dat je deze review wil verwijderen?")) return;
-    const { error } = await supabase.from("reviews").delete().eq("id", id);
-    if (error) {
-      toast({ title: "Verwijderen mislukt", description: error.message, variant: "destructive" });
-      return;
-    }
+    await loadAdminReviews({ action: "delete", id });
     toast({ title: "Review verwijderd" });
-    loadAdminReviews();
   };
 
   const logout = async () => {

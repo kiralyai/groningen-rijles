@@ -58,10 +58,7 @@ Deno.serve(async (req) => {
       .eq("role", "admin")
       .maybeSingle();
 
-    if (roleError) {
-      throw roleError;
-    }
-
+    if (roleError) throw roleError;
     if (!roleRow) {
       return new Response(JSON.stringify({ error: "Geen adminrechten" }), {
         status: 403,
@@ -69,14 +66,32 @@ Deno.serve(async (req) => {
       });
     }
 
+    let action = "list";
+    let reviewId: string | undefined;
+
+    if (req.method === "POST") {
+      const body = await req.json().catch(() => ({}));
+      action = body.action ?? "list";
+      reviewId = body.id;
+    }
+
+    if (action === "approve" && reviewId) {
+      const { error } = await adminClient
+        .from("reviews")
+        .update({ status: "approved" })
+        .eq("id", reviewId);
+      if (error) throw error;
+    } else if (action === "delete" && reviewId) {
+      const { error } = await adminClient.from("reviews").delete().eq("id", reviewId);
+      if (error) throw error;
+    }
+
     const { data: reviews, error: reviewsError } = await adminClient
       .from("reviews")
       .select("id, name, message, status, created_at")
       .order("created_at", { ascending: false });
 
-    if (reviewsError) {
-      throw reviewsError;
-    }
+    if (reviewsError) throw reviewsError;
 
     return new Response(JSON.stringify({ reviews: reviews ?? [] }), {
       status: 200,
