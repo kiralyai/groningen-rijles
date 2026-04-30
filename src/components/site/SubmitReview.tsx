@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const GOOGLE_REVIEWS_URL = "https://share.google/ywFWVgsWRqtWRsyT0";
 
@@ -18,6 +20,7 @@ const schema = z.object({
 });
 
 export const SubmitReview = () => {
+  const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
@@ -40,8 +43,19 @@ export const SubmitReview = () => {
     }
     setErrors({});
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 700));
+    const { error } = await supabase.from("reviews").insert({
+      name: parsed.data.name,
+      message: parsed.data.message,
+    });
     setLoading(false);
+    if (error) {
+      toast({
+        title: "Versturen mislukt",
+        description: "Probeer het later opnieuw of neem direct contact op.",
+        variant: "destructive",
+      });
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -65,7 +79,8 @@ export const SubmitReview = () => {
                 <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
                 <h3 className="mt-4 font-display text-2xl font-bold text-ink">Bedankt voor je review!</h3>
                 <p className="mt-2 text-ink-soft">
-                  Wil je hem ook op Google delen? Dat helpt nieuwe leerlingen enorm.
+                  Je review wordt binnenkort bekeken en daarna op de website geplaatst. Wil je hem ook op Google
+                  delen? Dat helpt nieuwe leerlingen enorm.
                 </p>
                 <Button asChild variant="outline" size="lg" className="mt-6">
                   <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
